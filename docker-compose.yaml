@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: medivue_db
+    restart: always
+    environment:
+      POSTGRES_USER: medivue
+      POSTGRES_PASSWORD: medivuepassword
+      POSTGRES_DB: medivue_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: medivue_api
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://medivue:medivuepassword@db:5432/medivue_db
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:
