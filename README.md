@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ### Run (dev)
 ```bash
 .\.venv\Scripts\activate
-uvicorn medivue_backend.main:app --reload --host 127.0.0.1 --port 8000
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
 Then open:

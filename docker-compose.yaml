@@ -1,8 +1,8 @@
-version: "3.9"
-
 services:
   db:
-    image: postgres:15
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql
     container_name: medivue_db
     restart: always
     environment:
@@ -11,8 +11,7 @@ services:
       POSTGRES_DB: medivue_db
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+
 
   api:
     build: .
